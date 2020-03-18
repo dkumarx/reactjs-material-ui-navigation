@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
-// import { SvgIconProps } from '@material-ui/core/SvgIcon'
 
 import List from '@material-ui/core/List'
 
@@ -24,7 +23,7 @@ export const AppMenuItemPropTypes = {
 }
 
 // TypeScript compile-time props type, infered from propTypes
-// https://dev.to/busypeoples/notes-on-typescript-inferring-react-proptypes-1g88
+// Ref: https://dev.to/busypeoples/notes-on-typescript-inferring-react-proptypes-1g88
 type AppMenuItemPropTypes = PropTypes.InferProps<typeof AppMenuItemPropTypes>
 type AppMenuItemPropsWithoutItems = Omit<AppMenuItemPropTypes, 'items'>
 
@@ -45,16 +44,14 @@ const AppMenuItem: React.FC<AppMenuItemProps> = props => {
 
   const MenuItemRoot = (
     <AppMenuItemComponent className={classes.menuItem} link={link} onClick={handleClick}>
-      {/* Display an icon if any */}
       {!!Icon && (
         <ListItemIcon className={classes.menuItemIcon}>
           <Icon />
         </ListItemIcon>
       )}
       <ListItemText primary={name} inset={!Icon} />
-      {/* Display the expand menu if the item has children */}
-      {isExpandable && !open && <IconExpandMore />}
-      {isExpandable && open && <IconExpandLess />}
+      {/* Render children while expand menu, if the item has children */}
+      {(isExpandable && !open) ? <IconExpandMore /> : <IconExpandLess />}
     </AppMenuItemComponent>
   )
 
